@@ -1,13 +1,18 @@
 class Dog
     attr_accessor :name, :breed, :id
 
+<<<<<<< HEAD
     def initialize (id: nil, name:, breed:)
+=======
+    def initialize (id=nil, name, breed)
+>>>>>>> ea26a31d27aa91aa6a855dd43ca032b7f1ac9ef3
         @name = name
         @breed = breed
         @id = id
     end
 
     def self.create_table
+<<<<<<< HEAD
         sql =  <<-SQL
           CREATE TABLE IF NOT EXISTS dogs (
             id INTEGER PRIMARY KEY,
@@ -17,6 +22,17 @@ class Dog
             SQL
         DB[:conn].execute(sql)
       end
+=======
+        sql = <<-SQL
+            CREATE TABLE IF NOT EXISTS dogs (
+                id INTEGER PRIMARY KEY,
+                name TEXT,
+                breed TEXT,
+            )
+            SQL
+            DB[:conn].execute(sql)
+    end
+>>>>>>> ea26a31d27aa91aa6a855dd43ca032b7f1ac9ef3
 
     def self.drop_table
         sql = "DROP TABLE IF EXISTS dogs"
@@ -37,11 +53,16 @@ class Dog
                 INSERT INTO dogs (name, breed)
                 VALUES (?,?)
             SQL
+<<<<<<< HEAD
             DB[:conn].execute(sql, self.name, self.breed)
+=======
+            DB[:conn].execute(sql, self.naem, self.breed)
+>>>>>>> ea26a31d27aa91aa6a855dd43ca032b7f1ac9ef3
             @id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs")[0][0]
         end
         return self
     end
+<<<<<<< HEAD
 
     def self.new_from_db(row)
         id = row[0]
@@ -89,4 +110,6 @@ class Dog
         sql = "UPDATE dogs SET name = ?, breed = ? WHERE id = ?"
         DB[:conn].execute(sql, self.name, self.breed, self.id)
     end
+=======
+>>>>>>> ea26a31d27aa91aa6a855dd43ca032b7f1ac9ef3
 end
